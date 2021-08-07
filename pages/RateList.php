@@ -6,20 +6,32 @@
 	<meta charset=<?=ENCODING ?>>
 </head>
 <body>
-	
+
 	<table border="0" width="100%" cellpadding="5">
 		<tr>
 			<td>
-				<button onclick="redirectToRateList();">
-					К списку оценок
+				<button onclick="unknown();">
+					Фильмы
+				</button>
+			</td>
+			<td>
+				<button onclick="unknown();">
+					Сериалы
+				</button>
+			</td>
+			<td>
+				<button onclick="unknown();">
+					Аниме
+				</button>
+			</td>
+			<td>
+				<button onclick="redirectToExtandedRateList();">
+					К расширенному списку
 				</button>
 			</td>
 		</tr>
 		<tr>
 			<td>
-				<button onclick="redirectToExtandedRateList();">
-					К расширенному списку оценок
-				</button>
 			</td>
 		</tr>
 		<tr>
@@ -28,20 +40,13 @@
 		</tr>
 	</table>
 
-
+		
 	<script>
-		function redirectToRateList()
-		{
-			window.location = 'http://MyMediaRateProject/pages/RateList.php';
-		}
 		function redirectToExtandedRateList()
 		{
 			window.location = 'http://MyMediaRateProject/pages/ExtendedRateList.php';
 		}
 	</script>
-
-
-	<? require_once "parts/footer.html"; ?>
 </body>
 
 </html>
