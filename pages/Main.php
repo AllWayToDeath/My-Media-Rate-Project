@@ -1,3 +1,4 @@
+<? require_once "../core/start.php"; ?>
 <? require_once "../core/config.php"; ?>
 <!DOCTYPE html>
 <html>
@@ -10,8 +11,8 @@
 	<table border="0" width="100%" cellpadding="5">
 		<tr>
 			<td>
-				<form action="login.php">
-				<table border="0" width="100%" cellpadding="1">
+				<form method="post" action="../core/login.php">
+				<table border="1" width="100%" cellpadding="1">
 					<tr>
 						<td width="5%">Login:</td>
 						<td width="5%">
@@ -22,14 +23,16 @@
 					<tr>
 						<td>Password:</td>
 						<td>
-							<input type="password" name="userpswd" size="10">
+							<input type="password" name="userpassword" placeholder="Пароль" size="10">
 						</td>
 						<td></td>
 					</tr>
 					<tr>
-						<td></td>
+						<td align="left">
+							<input type="submit" name="signup" value="Регистрация">
+						</td>
 						<td align="right">
-							<input type="submit" value="Войти">
+							<input type="submit" name="signin" value="Войти">
 						</td>
 						<td></td>
 					</tr>

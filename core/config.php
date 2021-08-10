@@ -1,5 +1,5 @@
 <?php
 
-	define("ENCODING", 	"utf-8");
+define("ENCODING", 	"utf-8");
 
 ?>
