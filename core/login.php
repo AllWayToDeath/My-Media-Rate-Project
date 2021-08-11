@@ -52,27 +52,44 @@ if(isset($_POST['signup'])){
          WHERE activated = false and login = \"$login\"
    ");//where login = $login and password = $password
 
-    switch(mysqli_num_rows($result)){
+    if(true == mysqli_num_rows($result))
+    {
+        $data = mysqli_fetch_array($result);
+
+            $result = quickQuery("
+                UPDATE users 
+                SET password = \"md5($password)\" ,
+                activated = true
+                WHERE activated = false and login = \"$login\" 
+            ");
+
+            //if(2 == login($login, $password))
+            login($login, $password);
+            header('Location: ../pages/Main.php');
+
+            return 0;
+    }
+
+    /*switch(mysqli_num_rows($result)){
         //Все норм
         case 1:
             $data = mysqli_fetch_array($result);
 
             $result = quickQuery("
 		        UPDATE users 
-			    SET password = \"md5($password)\" 
+			    SET password = \"md5($password)\" ,
+                activated = true
 			    WHERE activated = false and login = \"$login\" 
 		   	");
 
-		   	login($login, $password);
-
-            return 1;
+            return login($login, $password);
 
         //Такой пользователь не зарегистрирован!
         case 0:return 0;
 
         //Либо логин дублируется
         default:return -1;
-    }
+    }*/
     return 2;
 }
 

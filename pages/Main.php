@@ -8,36 +8,19 @@
 </head>
 <body>
 	
-	<table border="0" width="100%" cellpadding="5">
+	<table border="1" width="100%" cellpadding="5">
 		<tr>
 			<td>
-				<form method="post" action="../core/login.php">
-				<table border="1" width="100%" cellpadding="1">
-					<tr>
-						<td width="5%">Login:</td>
-						<td width="5%">
-							<input type="text" name="userlogin" size="10" placeholder="logogin06">
-						</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>Password:</td>
-						<td>
-							<input type="password" name="userpassword" placeholder="Пароль" size="10">
-						</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td align="left">
-							<input type="submit" name="signup" value="Регистрация">
-						</td>
-						<td align="right">
-							<input type="submit" name="signin" value="Войти">
-						</td>
-						<td></td>
-					</tr>
-				</table>
-				</form>
+				<?
+					if(false == $_SESSION['signined'])
+					{
+						require_once "parts/SignMenu.html";
+					}
+					else
+					{
+						require_once "parts/UserMenu.html";
+					}
+				?>
 			<td>
 		</tr>
 		<tr>
@@ -47,6 +30,10 @@
 		
 		<tr>
 			<td>
+				<?require_once "../core/sqlCheck.php";?>
+				<form method="post" action="../core/sqlCheck.php">
+				<input type="submit" name="sqlCheck" value= <?=$_SESSION['sqlbutton']?> >
+				</form>
 			</td>
 		</tr>
 		<tr>
