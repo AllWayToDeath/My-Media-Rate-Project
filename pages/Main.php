@@ -12,14 +12,15 @@
 		<tr>
 			<td>
 				<?
-					if(false == $_SESSION['signined'])
-					{
-						require_once "parts/SignMenu.html";
-					}
-					else
-					{
-						require_once "parts/UserMenu.html";
-					}
+				var_dump($_SESSION['signined']);
+				if(false == $_SESSION['signined'])
+				{
+					require_once "parts/SignMenu.html";
+				}
+				else
+				{
+					require_once "parts/UserMenu.html";
+				}
 				?>
 			<td>
 		</tr>

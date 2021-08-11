@@ -40,6 +40,7 @@ if(isset($_POST['signin'])){
 	$password = $_POST['userpassword'];
 
 	login($login, $password);
+    header('Location: ../pages/Main.php');
 }
 
 if(isset($_POST['signup'])){
@@ -47,27 +48,35 @@ if(isset($_POST['signup'])){
 	$password = $_POST['userpassword'];
 
 	$result = quickQuery("
-         SELECT name
+         SELECT id
          FROM `users`
-         WHERE activated = false and login = \"$login\"
+         WHERE activated = false and name = \"$login\"
    ");//where login = $login and password = $password
 
-    if(true == mysqli_num_rows($result))
+    if(true == $result)
     {
         $data = mysqli_fetch_array($result);
+        if(null == $data)
+        {
+            echo "А дата та NULL!";
+            return 5;
+        }
 
-            $result = quickQuery("
-                UPDATE users 
-                SET password = \"md5($password)\" ,
-                activated = true
-                WHERE activated = false and login = \"$login\" 
-            ");
+        $md5password = md5($password);
+        $id = $data[0];
 
-            //if(2 == login($login, $password))
-            login($login, $password);
-            header('Location: ../pages/Main.php');
+        $result = quickQuery("
+            UPDATE users 
+            SET password = \"$md5password\" ,
+            activated = true
+            WHERE id = \"$id\" and activated = false
+        ");
 
-            return 0;
+        //if(2 == login($login, $password))
+        login($login, $password);
+        header('Location: ../pages/Main.php');
+
+        return 0;
     }
 
     /*switch(mysqli_num_rows($result)){

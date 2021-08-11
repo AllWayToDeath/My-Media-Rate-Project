@@ -1,4 +1,4 @@
 <?
 session_start();
-$_SESSION['sqlbutton'] = "sql";
+//$_SESSION['sqlbutton'] = "sql";
 ?>
