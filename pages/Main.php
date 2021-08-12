@@ -12,7 +12,8 @@
 		<tr>
 			<td>
 				<?
-				var_dump($_SESSION['signined']);
+				require_once "../core/login.php";
+
 				if(false == $_SESSION['signined'])
 				{
 					require_once "parts/SignMenu.html";
@@ -21,6 +22,7 @@
 				{
 					require_once "parts/UserMenu.html";
 				}
+				var_dump($_SESSION['signined']);
 				?>
 			<td>
 		</tr>
@@ -31,10 +33,6 @@
 		
 		<tr>
 			<td>
-				<?require_once "../core/sqlCheck.php";?>
-				<form method="post" action="../core/sqlCheck.php">
-				<input type="submit" name="sqlCheck" value= <?=$_SESSION['sqlbutton']?> >
-				</form>
 			</td>
 		</tr>
 		<tr>

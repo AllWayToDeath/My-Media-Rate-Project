@@ -1,14 +1,17 @@
 <?
-
+require_once "../core/start.php";
 require_once "../core/DBEngine.php";
+
+if(!isset($_SESSION['signined']))
+    $_SESSION['signined'] = false;
 
 function login($login, $password)
 {
 	$result = quickQuery("
          SELECT name, password
          FROM `users`
-         WHERE activated = true and login = \"$login\"
-   ");//where login = $login and password = $password
+         WHERE activated = true and name = \"$login\"
+   ");
 
     switch(mysqli_num_rows($result)){
         //Все норм
@@ -39,7 +42,7 @@ if(isset($_POST['signin'])){
 	$login = $_POST['userlogin'];
 	$password = $_POST['userpassword'];
 
-	login($login, $password);
+	echo login($login, $password);
     header('Location: ../pages/Main.php');
 }
 
@@ -51,7 +54,7 @@ if(isset($_POST['signup'])){
          SELECT id
          FROM `users`
          WHERE activated = false and name = \"$login\"
-   ");//where login = $login and password = $password
+   ");
 
     if(true == $result)
     {
@@ -72,33 +75,11 @@ if(isset($_POST['signup'])){
             WHERE id = \"$id\" and activated = false
         ");
 
-        //if(2 == login($login, $password))
         login($login, $password);
         header('Location: ../pages/Main.php');
 
         return 0;
     }
-
-    /*switch(mysqli_num_rows($result)){
-        //Все норм
-        case 1:
-            $data = mysqli_fetch_array($result);
-
-            $result = quickQuery("
-		        UPDATE users 
-			    SET password = \"md5($password)\" ,
-                activated = true
-			    WHERE activated = false and login = \"$login\" 
-		   	");
-
-            return login($login, $password);
-
-        //Такой пользователь не зарегистрирован!
-        case 0:return 0;
-
-        //Либо логин дублируется
-        default:return -1;
-    }*/
     return 2;
 }
 
