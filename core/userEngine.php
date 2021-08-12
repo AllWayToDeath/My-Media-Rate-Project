@@ -17,6 +17,7 @@ if(isset($_POST['addFilmButton']))
 if(isset($_POST['signout']))
 {
 
+    $_SESSION['userid'] = NULL;
 	$_SESSION['signined'] = false;
     header('Location: ../pages/Main.php');
 }
