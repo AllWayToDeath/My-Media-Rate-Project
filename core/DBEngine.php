@@ -26,4 +26,5 @@
             reconnectToDB($connectToDB),
             $query);
     }
+
 ?>

@@ -8,6 +8,7 @@ TODO:
 require_once "../core/start.php";
 require_once "../core/config.php";
 require_once "../core/DBEngine.php";
+require_once "../core/userEngine.php";
 
 function wrapToQuotes($string)
 {
@@ -54,6 +55,13 @@ $placeholder_name_film = randFilmName();
 			width:290px;
 		}
 	</style>
+	<script>
+		function redirectToMain()
+		{
+			window.location = 'http://MyMediaRateProject/pages/Main.php';
+		}
+	</script>
+
 </head>
 <body>
 
@@ -65,7 +73,7 @@ $placeholder_name_film = randFilmName();
 		</tr>
 		<tr>
 			<td>
-				<form method="post" action="../core/.php">
+				<form method="post" action="../core/userEngine.php">
 				<table border="0" width="100%" cellpadding="1">
 					<tr>
 						<td width="10%">Жанр:</td>
@@ -133,6 +141,13 @@ $placeholder_name_film = randFilmName();
 					<tr>
 						<td>
 							
+							<input type="submit" name="backToMain" value="На главную">
+							
+							<?/*
+							<button onclick="redirectToMain()">
+								На главную
+							</button>
+							*/?>
 						</td>
 						<td align="right">
 							<input type="submit" name="acceptFilm" value="Подтвердить">
@@ -155,5 +170,6 @@ $placeholder_name_film = randFilmName();
 		</tr>
 	</table>
 
+	
 </body>
 </html>
