@@ -13,7 +13,8 @@ function login($login, $password)
          WHERE activated = true and name = \"$login\"
    ");
 
-    switch(mysqli_num_rows($result)){
+    switch(mysqli_num_rows($result))
+    {
         //Все норм
         case 1:
             $data = mysqli_fetch_array($result);
@@ -38,7 +39,8 @@ function login($login, $password)
     return 2;
 }
 
-if(isset($_POST['signin'])){
+if(isset($_POST['signin']))
+{
 	$login = $_POST['userlogin'];
 	$password = $_POST['userpassword'];
 
@@ -46,7 +48,8 @@ if(isset($_POST['signin'])){
     header('Location: ../pages/Main.php');
 }
 
-if(isset($_POST['signup'])){
+if(isset($_POST['signup']))
+{
 	$login = $_POST['userlogin'];
 	$password = $_POST['userpassword'];
 
