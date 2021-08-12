@@ -20,6 +20,7 @@
 				}
 				else
 				{
+					require_once "../core/userEngine.php";
 					require_once "parts/UserMenu.html";
 				}
 				var_dump($_SESSION['signined']);

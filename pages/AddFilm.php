@@ -1,7 +1,41 @@
 <?
+/*
+TODO:
+Реализовать сеты фильмов
+Либо брать сеты готовых фильмов из БД
+*/
+
 require_once "../core/start.php";
 require_once "../core/config.php";
 require_once "../core/DBEngine.php";
+
+function wrapToQuotes($string)
+{
+	return '"'.$string.'"';
+}
+
+function randFilmName()
+{
+	$film_names = [
+		"Кинг-Конг"
+		,"Соник"
+		,"И грянул гром"
+		,"Области тьмы"
+		,"Бойцовский клуб"
+		,"Мертвое поле"
+		,"Пушки Акимбо"
+		,"Напролом"
+		,"Не грози южному централу"
+		,"Птичий короб"
+	];
+	$film_name_id = rand(0, count($film_names) - 1);
+	$random_film_name = $film_names[$film_name_id];
+	return wrapToQuotes($random_film_name);
+}
+
+$current_year = 2021;
+$default_rate = rand(1, 10);
+$placeholder_name_film = randFilmName();
 
 ?>
 
@@ -10,10 +44,20 @@ require_once "../core/DBEngine.php";
 
 <head>
 	<meta charset=<?=ENCODING ?>>
+
+	<style>
+		textarea
+		{
+			resize: none;
+		}
+		input[type="range"] {
+			width:290px;
+		}
+	</style>
 </head>
 <body>
 
-	<table border="1" width="100%" cellpadding="5">
+	<table border="0" width="100%" cellpadding="5">
 		<tr>
 			<td>
 
@@ -21,47 +65,68 @@ require_once "../core/DBEngine.php";
 		</tr>
 		<tr>
 			<td>
-				<form method="post" action="../core/login.php">
-				<table border="1" width="100%" cellpadding="1">
+				<form method="post" action="../core/.php">
+				<table border="0" width="100%" cellpadding="1">
 					<tr>
 						<td width="10%">Жанр:</td>
-						<td >
-							<input type="" name="typeFilm">
+						<td width="10%">
+							<select name="typeFilm" size="1" required="">
+								<option>Фильм</option>
+								<option>Сериал</option>
+								<option>Аниме</option>
+							</select>
 						</td>
 						<td></td>
 					</tr>
 					<tr>
 						<td>Название:</td>
 						<td>
-							<input type="text" name="nameFilm" placeholder="Кинг-Конг" size="20">
+							<input type="text" name="nameFilm" size="40" placeholder=<?=$placeholder_name_film?> >
 						</td>
 						<td></td>
 					</tr>
 					<tr>
 						<td>Оценка:</td>
 						<td>
-							<input type="range" name="rateFilm">
+							<table border="0" width="100%" cellpadding="0">
+								<tr>
+									<td>
+										<input type="range" id="rateFilm" name="rateFilm" min="0" max="10" step="1" oninput="printRate();" value=<?=$default_rate?> size="20">
+									</td>
+									<td align="right" width="10%">
+										<div id="printedValue">
+								<?=$default_rate?>
+							</div>
+									</td>
+								</tr>
+							</table>
+							<script>
+
+								function printRate() {
+									rangeValue = document.getElementById("rateFilm").value;
+									document.getElementById("printedValue").innerHTML = rangeValue;
+								}
+							</script>
 						</td>
-						<td></td>
 					</tr>
 					<tr>
 						<td>Количество серий:</td>
 						<td>
-							<input type="text" name="episodesFilm">
+							<input type="text" size="5" name="episodesFilm">
 						</td>
 						<td></td>
 					</tr>
 					<tr>
 						<td>Год выпуска:</td>
 						<td>
-							<input type="range" name="releaseFilm">
+							<input type="number" name="releaseFilm" min="1895" max=<?=$current_year?> step="1" size="4" maxlength="4" value="2010">
 						</td>
 						<td></td>
 					</tr>
 					<tr>
 						<td>Комментарий:</td>
 						<td>
-							<input type="test" name="commentFilm">
+							<textarea cols="40" rows="5" placeholder="Комментарий" maxlength="2048" name="commentFilm" ></textarea>
 						</td>
 						<td></td>
 					</tr>
