@@ -8,7 +8,7 @@ if(!isset($_SESSION['signined']))
 function login($login, $password)
 {
 	$result = quickQuery("
-         SELECT name, password
+         SELECT id, role, password
          FROM `users`
          WHERE activated = true and name = \"$login\"
    ");
@@ -23,6 +23,7 @@ function login($login, $password)
                 $_SESSION['signined'] = "true";
                 $_SESSION['status'] = $data['role'];
                 $_SESSION['username'] = $login;
+                $_SESSION['userid'] = $data['id'];
 
                 return 1;
             }else{
