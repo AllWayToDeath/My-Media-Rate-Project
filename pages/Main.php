@@ -8,7 +8,7 @@
 </head>
 <body>
 	
-	<table border="1" width="100%" cellpadding="5">
+	<table border="0" width="100%" cellpadding="5">
 		<tr>
 			<td>
 				<?
@@ -23,7 +23,7 @@
 					require_once "../core/userEngine.php";
 					require_once "parts/UserMenu.html";
 				}
-				var_dump($_SESSION['signined']);
+				//var_dump($_SESSION['signined']);
 				?>
 			<td>
 		</tr>
