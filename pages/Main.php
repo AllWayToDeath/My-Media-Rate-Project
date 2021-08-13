@@ -1,5 +1,9 @@
-<? require_once "../core/start.php"; ?>
-<? require_once "../core/config.php"; ?>
+<? 
+require_once "../core/start.php";
+require_once "../core/config.php";
+require_once "../core/navigate.php";
+
+?>
 <!DOCTYPE html>
 <html>
 
@@ -7,7 +11,8 @@
 	<meta charset=<?=ENCODING ?>>
 </head>
 <body>
-	
+	<form method="post" action="../core/navigate.php" id="nav">
+	</form>
 	<table border="0" width="100%" cellpadding="5">
 		<tr>
 			<td>
@@ -38,16 +43,12 @@
 		</tr>
 		<tr>
 			<td>
-				<button onclick="redirectToRateList();">
-					К списку оценок
-				</button>
+				<input type="submit" name="gotoRateList" value="К списку оценок" form="nav">
 			</td>
 		</tr>
 		<tr>
 			<td>
-				<button onclick="redirectToExtandedRateList();">
-					К расширенному списку оценок
-				</button>
+				<input type="submit" name="gotoExtandedRateList" value="К расширенному списку оценок" form="nav">
 			</td>
 		</tr>
 		<tr>
@@ -58,17 +59,6 @@
 
 
 	<script>
-		function unknown()
-		{}
-		function redirectToRateList()
-		{
-			window.location = 'http://MyMediaRateProject/pages/RateList.php';
-		}
-		function redirectToExtandedRateList()
-		{
-			window.location = 'http://MyMediaRateProject/pages/ExtendedRateList.php';
-		}
-
 		function randomLogin()
 		{
 			//Пока так

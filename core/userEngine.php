@@ -2,18 +2,9 @@
 
 require_once "../core/start.php";
 require_once "../core/DBEngine.php";
+require_once "../core/navigate.php";
 
-if(isset($_POST['addUserButton']))
-{
 
-    header('Location: ../pages/AddUser.php');
-}
-
-if(isset($_POST['addFilmButton']))
-{
-
-    header('Location: ../pages/AddFilm.php');
-}
 
 if(isset($_POST['signout']))
 {
@@ -23,11 +14,7 @@ if(isset($_POST['signout']))
     header('Location: ../pages/Main.php');
 }
 
-if(isset($_POST['backToMain']))
-{
 
-    header('Location: ../pages/Main.php');
-}
 
 if(isset($_POST['acceptFilm']))
 {
