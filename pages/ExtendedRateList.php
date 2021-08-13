@@ -17,6 +17,7 @@
 			window.location = 'http://MyMediaRateProject/pages/Main.php';
 		}
 	</script>
+	<? require_once "parts/footer.html"; ?>
 </body>
 
 </html>

@@ -9,6 +9,8 @@ require_once "../core/start.php";
 require_once "../core/config.php";
 require_once "../core/DBEngine.php";
 require_once "../core/userEngine.php";
+require_once "../core/navigate.php";
+
 
 function wrapToQuotes($string)
 {
@@ -141,7 +143,7 @@ $placeholder_name_film = randFilmName();
 					<tr>
 						<td>
 							
-							<input type="submit" name="backToMain" value="На главную">
+							<input type="submit" name="gotoMain" value="На главную">
 							
 							<?/*
 							<button onclick="redirectToMain()">
@@ -170,6 +172,6 @@ $placeholder_name_film = randFilmName();
 		</tr>
 	</table>
 
-	
+	<? require_once "parts/footer.html"; ?>
 </body>
 </html>

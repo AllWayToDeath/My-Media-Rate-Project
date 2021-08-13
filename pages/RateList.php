@@ -224,6 +224,7 @@ require_once "../core/navigate.php";
 			</td>
 		</tr>
 	</table>
+	<? require_once "parts/footer.html"; ?>
 </body>
 
 </html>
