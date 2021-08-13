@@ -92,7 +92,44 @@ require_once "../core/navigate.php";
 		
 		<tr>
 			<td>
-				различные фильтры для таблицы
+				<table  border="1" width="100%" cellpadding="0">
+				<form method="post" action="RateList.php" id="sortForm"></form>
+					<tr>
+						<td width="32%">
+							<input type="submit" name="sortByName" form="sortForm" value="Сортировать по имени">
+						</td>
+						<td width="10%">
+							<input type="submit" name="sortByRate" form="sortForm" value="Сортировать по оценке">
+						</td>
+						<td>
+							<input type="submit" name="sortByNone" form="sortForm" value="Без сортировки">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							
+						</td>
+					</tr>
+				</table>
+				<?
+
+				$default_sort = "none";
+				$sort = $default_sort;
+
+				if(isset($_POST['sortByName']))
+				{
+					$sort = "name";
+				}
+				if(isset($_POST['sortByRate']))
+				{
+					$sort = "rate";
+				}
+				if(isset($_POST['sortByNone']))
+				{
+					$sort = "none";
+				}
+
+				?>
 			</td>
 		</tr>
 		<tr>
@@ -129,13 +166,29 @@ require_once "../core/navigate.php";
 									$filter = "Аниме";
 								}
 
+								$sort_query_part = "";
+								switch($sort)
+								{
+									case "name":
+										$sort_query_part = "ORDER BY name ASC";
+										break;
+
+									case "rate":
+										$sort_query_part = "ORDER BY rate DESC";
+										break;
+
+									case "none":
+										$sort_query_part = "";
+										break;
+								}
+
 								require_once "../core/DBEngine.php";
 
 								$query = "
 									SELECT name, rate, comment_text
 									FROM films
 									WHERE type = '".$filter."'
-								";
+								".$sort_query_part;
 
 								$result = quickQuery($query);
 								$data = mysqli_fetch_array($result);
