@@ -58,10 +58,10 @@ require_once "../core/navigate.php";
 </head>
 <body>
 
-	<table border="1" width="100%" cellpadding="5">
+	<table border="0" width="100%" cellpadding="5">
 		<tr>
 			<td>
-				<table border="1" width="100%" cellpadding="5">
+				<table border="0" width="100%" cellpadding="5">
 				<form method="post" action="RateList.php">
 					<tr>
 						<td width="10%" align="right">
@@ -92,7 +92,7 @@ require_once "../core/navigate.php";
 		
 		<tr>
 			<td>
-				<table  border="1" width="100%" cellpadding="0">
+				<table  border="0" width="100%" cellpadding="0">
 				<form method="post" action="RateList.php" id="sortForm"></form>
 					<tr>
 						<td width="32%">
