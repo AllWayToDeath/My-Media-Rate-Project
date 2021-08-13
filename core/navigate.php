@@ -2,13 +2,11 @@
 
 if(isset($_POST['addUserButton']))
 {
-
     header('Location: ../pages/AddUser.php');
 }
 
 if(isset($_POST['addFilmButton']))
 {
-
     header('Location: ../pages/AddFilm.php');
 }
 

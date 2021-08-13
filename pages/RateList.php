@@ -97,13 +97,12 @@ require_once "../core/navigate.php";
 		</tr>
 		<tr>
 			<td>
-				сама таблица фильмов
 				<div class="scroll-table">
 					<table>
 						<thead>
 							<tr>
-								<th>Название фильма</th>
-								<th>Оценка</th>
+								<th width='30%'>Название фильма</th>
+								<th width='10%'>Оценка</th>
 								<th>Комментарий</th>
 							</tr>
 						</thead>
@@ -112,25 +111,56 @@ require_once "../core/navigate.php";
 						<table>
 							<tbody>
 
-								<tr>
-									<td>Кинг-Конг</td>
-									<td>6</td>
-									<td>Хуё-мое</td>
-								</tr>
-								<tr>
-									<td>Конг-Кинг</td>
-									<td>9</td>
-									<td>Мое-хуё</td>
-								</tr>
-								<tr>
-									<td>-К-</td>
-									<td>8</td>
-									<td>Ёмх-уое</td>
-								</tr>
-
 								<?
 
-								
+								$default_filter = "Фильм";
+								$filter = $default_filter;
+
+								if(isset($_POST['filterFilms']))
+								{
+									$filter = "Фильм";
+								}
+								if(isset($_POST['filterSerials']))
+								{
+									$filter = "Сериал";
+								}
+								if(isset($_POST['filterAnime']))
+								{
+									$filter = "Аниме";
+								}
+
+								require_once "../core/DBEngine.php";
+
+								$query = "
+									SELECT name, rate, comment_text
+									FROM films
+									WHERE type = '".$filter."'
+								";
+
+								$result = quickQuery($query);
+								$data = mysqli_fetch_array($result);
+
+								if(null == $data)
+								{
+									echo "
+									<tr>
+									<td width='30%'></td><td width='10%'></td>
+									<td>Оценки в жанре ".$filter." отсутствуют!</td>
+									</tr>
+									";
+								}
+
+								do
+								{
+									echo "
+									<tr>
+										<td width='30%'>".$data[0]."</td>
+										<td width='10%'>".$data[1]."</td>
+										<td>".$data[2]."</td>
+									</tr>
+									";
+								}
+								while(null != ($data = mysqli_fetch_array($result)));
 
 								?>
 								
